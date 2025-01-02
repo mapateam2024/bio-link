@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html{
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 /* Background buat body
     Color itu text
     Display flex buat flexible
@@ -120,6 +125,7 @@ ul.listlink li:not(:last-child) {
     box-shadow: 8px 10px 0 #0f0f25;
     color: #d0d0e2;
     border: 2px solid #2d2d56;
+    gap: 1rem;
 }
 
 /* Ini buat list putih pas dipencet */
@@ -150,6 +156,10 @@ ul.listlink li:not(:last-child) {
     color: #8787a3;
     cursor: pointer;
     padding: 10px;
+}
+
+.links .link-text {
+    text-align: center;
 }
 
 .link-action i:hover{
