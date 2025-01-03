@@ -1,71 +1,59 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const actionLink = document.querySelectorAll(".link-card .link-action");
+    console.log("actionLink:", actionLink); // Debugging: pastikan elemen ditemukan
 
-const actionLink = document.querySelectorAll(".link-card .link-action")
-// Definisikan actionLink
-// Di select all, pake query, trus classnya dalam linkcard dan linkaction
+    actionLink.forEach((action) => {
+        action.addEventListener("click", (e) => {
+            e.preventDefault();
+            const url = action.parentElement.getAttribute("href");
+            console.log("URL yang disalin:", url); // Debugging: cek URL
 
-actionLink.forEach((action) => {
+            navigator.clipboard.writeText(url);
 
-    // Actionnya pas di klik yagesyak. Buat animasi clipboard
-    action.addEventListener("click", (e) => {
-        // prevent default buat biar ga open tab baru pas copy clipboard
-        // e.preventDefault();
-        // console.log("action :", action.parentElement);
-        // const url = action.parentElement.getAttribute("href");
-        // Ini mendefinisikan kalo bisa ke link yang dimauin
-        // console.log("url : ", url);
-        // Bawah ini buat copy ke clipboard
-        // navigator.clipboard.writeText(url); (BIAR MEMO GA BANYAK, DAN GAUSAH PAKE VARIABEL BANYAK) BUAT MENGHEMAT JADI CUMAN=>
-        
-            e.preventDefault(e);
-        navigator.clipboard.writeText(action.parentElement.getAttribute("href"));
+            // Tampilkan notifikasi
+            document.getElementById("toast").innerHTML = `
+                <div class="toast-container">
+                    <p>✅ Link <strong>${action.parentElement.innerText}</strong> berhasil disalin!</p>
+                </div>
+            `;
 
-        // Buat munculin notip
-        document.getElementById("toast").innerHTML = `
-            <div class="toast-container">
-                <p>✅ Link <strong> ${action.parentElement.innerText} </strong> berhasil disalin!</p>
-            </div> 
-        `;
+            // Hapus notifikasi setelah animasi selesai
+            setTimeout(() => {
+                document.querySelector("#toast .toast-container").classList.add("toast-gone");
+            }, 300);
 
-        // Buat ngilangin notip
-        setTimeout((e) => {
-            document.querySelector("#toast .toast-container")
-            .classList.add("toast-gone")
-        }, 300);
-
-        setTimeout((e) => {
-            document.querySelector("#toast .toast-container").remove(e);
-        }, 2000);
-    });
-});
-
-// Buat animasi fill clipboardnya
-document.querySelectorAll(".link-action i").forEach((action) => {
-    action.addEventListener("mouseenter", (e) => {
-        action.classList.remove("ph");
-        action.classList.add("ph-fill");
+            setTimeout(() => {
+                document.querySelector("#toast .toast-container").remove();
+            }, 2000);
+        });
     });
 
-    action.addEventListener("mouseleave", (e) => {
-        action.classList.remove("ph-fill");
-        action.classList.add("ph");
+    // Animasi hover pada ikon
+    document.querySelectorAll(".link-action i").forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
+            icon.classList.remove("ph");
+            icon.classList.add("ph-fill");
+        });
+        icon.addEventListener("mouseleave", () => {
+            icon.classList.remove("ph-fill");
+            icon.classList.add("ph");
+        });
     });
-});
 
-// Buat ganti ikon sosmed saat hover
-document.querySelectorAll(".sosmed i").forEach((sosmed) => {
-    sosmed.addEventListener("mouseenter", (e) => {
-        sosmed.classList.remove("ph");
-        sosmed.classList.add("ph-fill");
+    // Animasi hover ikon sosial media
+    document.querySelectorAll(".sosmed i").forEach((sosmed) => {
+        sosmed.addEventListener("mouseenter", () => {
+            sosmed.classList.remove("ph");
+            sosmed.classList.add("ph-fill");
+        });
+        sosmed.addEventListener("mouseleave", () => {
+            sosmed.classList.remove("ph-fill");
+            sosmed.classList.add("ph");
+        });
     });
 
-    sosmed.addEventListener("mouseleave", (e) => {
-        sosmed.classList.remove("ph-fill");
-        sosmed.classList.add("ph");
+    // Animasi bergerak saat scroll
+    document.addEventListener("scroll", () => {
+        document.querySelector(".bg-text-animation").style.transform = `translateX(${window.scrollY / 5}px)`;
     });
-});
-
-// Animasi bergerak saat scroll
-document.addEventListener("scroll", (e) => {
-    document.querySelector(
-        ".bg-text-animation").style.transform = `translateX(${window.scrollY/5}px)`;
 });
