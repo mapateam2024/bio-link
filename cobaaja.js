@@ -69,4 +69,3 @@ document.addEventListener("scroll", (e) => {
     document.querySelector(
         ".bg-text-animation").style.transform = `translateX(${window.scrollY/5}px)`;
 });
-app.use(express.static('public'));
