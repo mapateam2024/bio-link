@@ -15,7 +15,7 @@ actionLink.forEach((action) => {
         // // Bawah ini buat copy ke clipboard
         // navigator.clipboard.writeText(url); (BIAR MEMO GA BANYAK, DAN GAUSAH PAKE VARIABEL BANYAK) BUAT MENGHEMAT JADI CUMAN=>
         
-            e.preventDefault();
+            e.preventDefault(e);
         navigator.clipboard.writeText(action.parentElement.getAttribute("href"));
 
         // Buat munculin notip
@@ -26,25 +26,25 @@ actionLink.forEach((action) => {
         `;
 
         // Buat ngilangin notip
-        setTimeout(() => {
+        setTimeout((e) => {
             document.querySelector("#toast .toast-container")
             .classList.add("toast-gone")
         }, 300);
 
-        setTimeout(() => {
-            document.querySelector("#toast .toast-container").remove();
+        setTimeout((e) => {
+            document.querySelector("#toast .toast-container").remove(e);
         }, 2000);
     });
 });
 
 // Buat animasi fill clipboardnya
 document.querySelectorAll(".link-action i").forEach((action) => {
-    action.addEventListener("mouseenter", () => {
+    action.addEventListener("mouseenter", (e) => {
         action.classList.remove("ph");
         action.classList.add("ph-fill");
     });
 
-    action.addEventListener("mouseleave", () => {
+    action.addEventListener("mouseleave", (e) => {
         action.classList.remove("ph-fill");
         action.classList.add("ph");
     });
@@ -52,12 +52,12 @@ document.querySelectorAll(".link-action i").forEach((action) => {
 
 // Buat ganti ikon sosmed saat hover
 document.querySelectorAll(".sosmed i").forEach((sosmed) => {
-    sosmed.addEventListener("mouseenter", () => {
+    sosmed.addEventListener("mouseenter", (e) => {
         sosmed.classList.remove("ph");
         sosmed.classList.add("ph-fill");
     });
 
-    sosmed.addEventListener("mouseleave", () => {
+    sosmed.addEventListener("mouseleave", (e) => {
         sosmed.classList.remove("ph-fill");
         sosmed.classList.add("ph");
     });
