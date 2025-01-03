@@ -6,13 +6,13 @@ actionLink.forEach((action) => {
 
     // Actionnya pas di klik yagesyak. Buat animasi clipboard
     action.addEventListener("click", (e) => {
-        // // prevent default buat biar ga open tab baru pas copy clipboard
+        // prevent default buat biar ga open tab baru pas copy clipboard
         // e.preventDefault();
         // console.log("action :", action.parentElement);
         // const url = action.parentElement.getAttribute("href");
-        // // Ini mendefinisikan kalo bisa ke link yang dimauin
+        // Ini mendefinisikan kalo bisa ke link yang dimauin
         // console.log("url : ", url);
-        // // Bawah ini buat copy ke clipboard
+        // Bawah ini buat copy ke clipboard
         // navigator.clipboard.writeText(url); (BIAR MEMO GA BANYAK, DAN GAUSAH PAKE VARIABEL BANYAK) BUAT MENGHEMAT JADI CUMAN=>
         
             e.preventDefault(e);
